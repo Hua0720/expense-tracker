@@ -27,7 +27,22 @@ const app = express()
 const PORT = process.env.PORT
 
 // 指定樣板引擎指定為 Handlebars
-app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
+app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' ,
+  helpers: {
+    showIcon: function (categoryId) {
+      const category_icon = [
+        '<i class="fa-solid fa-house" ></i>',
+        '<i class="fa-solid fa-van-shuttle"></i>',
+        '<i class="fa-solid fa-face-grin-beam"></i>',
+        '<i class="fa-solid fa-utensils"></i>',
+        '<i class="fa-sharp fa-solid fa-pen-to-square"></i>',
+        '<i class="fa-sharp fa-solid fa-list"></i>'
+      ]
+      return category_icon[categoryId - 1]
+    }
+  }
+}))
+
 app.set('view engine', 'hbs')
 
 // 註冊套件使用 session(option) 來設定相關選項
