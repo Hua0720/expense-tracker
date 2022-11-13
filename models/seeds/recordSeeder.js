@@ -63,6 +63,13 @@ db.once('open', () => {
         name,
         email,
         password: bcrypt.hashSync(password, bcrypt.genSaltSync(10))
+      }).then((user) => {
+        const records = recordIndex.map((index) => {
+          const record = SEED_Record[index]
+          record.userId = user._id
+          return record
+        })
+        return Record.create(records)
       })
     })
   )

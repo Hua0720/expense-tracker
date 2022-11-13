@@ -10,6 +10,11 @@ const methodOverride = require('method-override')
 // 引用connect-flash套件
 const flash = require('connect-flash')
 
+// handlebars helper
+const dateFormat = require('./public/dateHelper')
+const { iconChoose, iconNum } = require('./public/iconHelper')
+const ifEven = require('./public/indexHelper')
+
 // 判別開發環境
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
@@ -27,22 +32,7 @@ const app = express()
 const PORT = process.env.PORT
 
 // 指定樣板引擎指定為 Handlebars
-app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' ,
-  helpers: {
-    showIcon: function (categoryId) {
-      const category_icon = [
-        '<i class="fa-solid fa-house" ></i>',
-        '<i class="fa-solid fa-van-shuttle"></i>',
-        '<i class="fa-solid fa-face-grin-beam"></i>',
-        '<i class="fa-solid fa-utensils"></i>',
-        '<i class="fa-sharp fa-solid fa-pen-to-square"></i>',
-        '<i class="fa-sharp fa-solid fa-list"></i>'
-      ]
-      return category_icon[categoryId - 1]
-    }
-  }
-}))
-
+app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 
 // 註冊套件使用 session(option) 來設定相關選項
