@@ -1,120 +1,38 @@
-<div class="d-flex justify-content-center mt-5">
-  <div class="col-auto mt-3" align="center">
-    <form action="/category" method="GET">
-      <select class="form-select" id="category" name="categoryId" style="width:450px; text-align:center"
-        onchange="this.form.submit()">
-        <option disabled selected>類別</option>
-        <option value="1">家居物業</option>
-        <option value="2">交通出行</option>
-        <option value="3">休閒娛樂</option>
-        <option value="4">餐飲食品</option>
-        <option value="5">其他</option>
-        <option value="6">所有類別</option>
-      </select>
-    </form>
-    {{!-- 固定類別選項 --}}
-    <script>
-      let form = document.querySelectorAll('.form-select option')
-      form.forEach(element => {
-        if (element.value == {{ this.categoryId }})
-        element.setAttribute('selected', 'selected') 
-      })
-    </script>
+<div class="container">
+  <form action="/">
+    <select class="form-select" name="sort" id="sort" onchange="this.form.submit()">
+      <option value="0">所有類別</option>
+      {{#each categoryList}}
+      <option value="{{this.id}}" {{#if this.selected}}selected{{/if}}>{{this.name}}</option>
+      {{/each}}
+    </select>
+  </form>
+
+  <div class="total" id="totalAmount">
+    <p>總金額:</p><span class="totalAmount" id="totalAmount">{{totalAmount}}</span>
   </div>
+  {{#each records}}
+  <table class="table table-hover">
+    <tbody>
+      <tr class="table-active">
+        <th scope="row" id="index-icon"><i class="{{Icon this.category}}"></i></th>
+        <td>
+          <div>
+            <p id="index-name">{{this.name}}</p>
+            <small id="index-date">{{dateFormat this.date}}</small>
+          </div>
+        </td>
+        <td id="index-amount">{{this.amount}}</td>
+        <td class="edit-delete-btn">
+          <a class="btn btn-success" href="./records/{{ this._id }}/edit">修改</a>
+          <form action="./records/{{ this._id }}?_method=DELETE" method="POST" style="display: inline">
+            <button class="btn btn-danger" type="submit">刪除</button>
+          </form>
+      </tr>
+    </tbody>
+  </table>
+  {{/each}}
+  <a href="/records/new" class="create-btn btn btn-primary">新增支出</a>
 </div>
 
-{{!-- Total amount --}}
-<div class="row text-center mt-5 mb-3">
-  <div class="col">
-    <p>總金額:
-      <strong class="fs-1 text-danger">{{total}}</strong>
-    </p>
-  </div>
-</div>
-
-
-{{!-- Record --}}
-<div class="d-flex justify-content-center ">
-  <ul class="list-group w-35" style="width: 450px;">
-    {{#each records}}
-    {{!-- even index: color background --}}
-    {{#if (ifEven @index)}}
-    <li class="list-group-item d-flex justify-content-center align-items-center "
-      style="background-color: rgba(0,0,255,.1);">
-      {{!-- icon --}}
-      <div>
-        <i class="{{iconChoose this.categoryId}}"></i>
-      </div>
-      {{!-- category & date --}}
-      <div class="ms-2 me-auto">
-        <div class="fw-bold  d-flex flex-column text-start">{{this.name}}
-        </div>
-        <small>{{ dateFormat this.date }}</small>
-      </div>
-      {{!-- amount --}}
-
-      <span style="color:blue;font-weight:bold">{{this.amount}}元</span>
-      {{!-- button --}}
-      <div class="col-auto m-4">
-        <a class="btn btn-outline-success" href="/records/{{ this._id }}">修改</a>
-        <form action="/records/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;"
-          onsubmit="return deleteRecord()">
-          <button class="btn btn-outline-danger" type="submit">刪除</button>
-          <script>
-            function deleteRecord() {
-              let result = confirm('確定要刪除該筆紀錄 ?')
-              if (result) {
-                alert('成功刪除這筆紀錄!')
-                return true
-              } else {
-                return false
-              }
-            }
-          </script>
-        </form>
-      </div>
-    </li>
-    {{else}}
-    <li class="list-group-item d-flex justify-content-center align-items-center">
-      {{!-- icon --}}
-      <div>
-        <i class="{{iconChoose this.categoryId}}"></i>
-      </div>
-      {{!-- category & date --}}
-      <div class="ms-2 me-auto">
-        <div class="fw-bold  d-flex flex-column text-start">{{this.name}}
-        </div>
-        <small>{{ dateFormat this.date }}</small>
-      </div>
-      {{!-- amount --}}
-
-      <span style="color:blue;font-weight:bold">{{this.amount}}元</span>
-      {{!-- button --}}
-      <div class="col-auto m-4">
-        <a class="btn btn-outline-success" href="/records/{{ this._id }}">修改</a>
-        <form action="/records/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;"
-          onsubmit="return deleteRecord()">
-          <button class="btn btn-outline-danger" type="submit">刪除</button>
-          <script>
-            function deleteRecord() {
-              let result = confirm('確定要刪除該筆紀錄 ?')
-              if (result) {
-                alert('成功刪除這筆紀錄!')
-                return true
-              } else {
-                return false
-              }
-            }
-          </script>
-        </form>
-      </div>
-    </li>
-    {{/if}}
-    {{/each}}
-  </ul>
-</div>
-
-{{!-- create expense --}}
-<div class="row-auto text-center mt-3">
-  <a class="btn btn-warning btn-outline-secondary" href="/records/new">新增支出</a>
-</div>
+<script src='../utility/time.js'></script>
