@@ -92,17 +92,3 @@ router.get('/logout', function (req, res, next) {
 })
 
 module.exports = router
-
-// ---------------- 過程檔 --------------------------------
-// else {
-// const newUser = new User({
-//   name,
-//   email,
-//   password
-// })
-//   newUser
-//    .save() // 儲存完成後把使用者丟回去then ， 也就是首頁
-//    .then(() => res.redirect('/'))
-//    .catch(err => console.log(err))
-//  }
-
