@@ -1,97 +1,122 @@
-header {
-  overflow: hidden;
-}
-
 .navbar .navbar-brand {
-  color: #4592af;
+  font-size: 25px;
+  font-weight: 900;
 }
 
-.navbar .navbar-brand:hover {
-  color: #226089;
+.login-button {
+  background-color: #fff;
+  border: 1px solid black;
+  letter-spacing: 2px;
+  font-size: 18px;
+  font-weight: 700;
 }
 
-.banner {
-  position: relative;
-  z-index: -1;
-  margin: -5px;
-  height: 360px;
-  background: #dddddd center center url('https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5720/restaurants-list-cover.jpg');
-  background-size: cover;
-  filter: blur(3px);
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
 }
 
-.search-bar .search-bar-outer {
-  margin: 0 auto;
-  max-width: 680px;
-  background-color: #fce2cf;
-  border-radius: 8px;
-  padding: 20px 30px;
-  border: 0;
-  margin-top: -60px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+.total p {
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: -40px;
 }
 
-.search-bar .search-bar-inner h4 {
-  color: #9b4b4b;
+.totalAmount {
+  font-size: 50px;
+  margin: 0px 0px 20px 130px;
+  color: #E95420;
 }
 
-.form-control::placeholder {
-  color: #aaaaaa;
-  font-size: 0.8rem;
+.table-active {
+  align-items: center;
 }
 
-.btn-major {
-  background-color: #9b4b4b;
-  color: white;
+#index-icon {
+  text-align: center;
+  width: 15%;
+  font-size: 30px;
+  color: #1262b3;
 }
 
-.form-control:focus {
-  box-shadow: none;
-  border-color: #ced4da;
+#index-name {
+  margin-bottom: -10px;
+  font-size: 20px;
+  font-weight: 700;
 }
 
-.card {
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+#index-date {
+  font-size: 5px;
 }
 
-.card img {
-  height: 180px;
+#index-amount {
+  text-align: end;
+  width: 15%;
+  font-size: 20px;
+}
+
+.form-select {
+  width: 300px;
+}
+
+.edit-delete-btn {
+  text-align: end;
+  width: 35%;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 3px;
+}
+
+.edit-delete-btn .btn-success {
+  margin-right: 5px;
+}
+
+.create-btn {
+  width: 150px;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin: 30px auto;
+  border: 1px solid black;
+}
+
+.card-small {
+  font-size: 10px;
 }
 
 .card-title {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  font-size: 35px;
+  margin: 0 0 0 35px;
+  font-weight: 700;
 }
 
-.restaurant-category {
-  color: #666666;
-  font-size: 0.8rem;
+.require {
+  color: red;
 }
 
-.restaurant-show-title {
-  position: relative;
-  top: -100px;
-  color: white;
-  text-align: center;
-  font-size: 3rem;
-  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+.require {
+  color: red;
+  font-weight: 700;
 }
 
-@media screen and (max-width: 992px) {
-  .card img {
-    height: 115px;
-  }
+label, input{
+  height: 40px;
 }
 
-@media screen and (max-width: 768px) {
-  .restaurant-show-title {
-    font-size: 2rem;
-  }
+.new-btn-location {
+  text-align: end;
 }
 
-@media screen and (max-width: 575px) {
-  .card img {
-    height: auto;
-  }
+.sign-in-btn, .fb-btn{
+  width: 100%;
+  font-size: 20px;
+}
+
+.login-card {
+  width: 500px;
+}
+
+.lead {
+  font-weight: 400;
 }
