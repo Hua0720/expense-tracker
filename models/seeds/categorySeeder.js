@@ -20,8 +20,11 @@ db.on('error', () => {
 
 
 db.once('open', () => {
-  Promise.all(categoryData)
-  Category.create(category)
+  return Promise.all(
+    categoryData.map(category =>{
+      return Category.create(category)
+    })
+  )
     .then(() => {
       console.log("Category done!")
       process.exit()
