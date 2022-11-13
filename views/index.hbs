@@ -9,7 +9,7 @@
   </form>
 
   <div class="total" id="totalAmount">
-    <p>總金額:</p><span class="totalAmount" id="totalAmount">{{totalAmount}}</span>
+    <h5 class="fw-bold">總金額:<span class="totalAmount" id="totalAmount" style="color:#612b5b;">{{totalAmount}}</h5>
   </div>
   {{#each records}}
   <table class="table table-hover">
@@ -32,7 +32,7 @@
     </tbody>
   </table>
   {{/each}}
-  <a href="/records/new" class="create-btn btn btn-primary">新增支出</a>
+  <a href="/records/new" class="btn btn-white text-danger" style="border-color:rgb(4, 31, 48);">新增支出</a>
 </div>
 
 <script src='../utility/time.js'></script>

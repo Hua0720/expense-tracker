@@ -4,14 +4,14 @@
       <div class="card">
         <div class="card-body">
           <h4>
-            <small class="card-small">*必填欄位</small>
-            <span class="card-title">請修改你的支出</span>
+            <small class="card-small">*為必填欄位</small>
+            <span class="card-title">修改支出</span>
           </h4>
           <hr>
           <form action="/records/{{ record._id }}?_method=PUT" method="POST" id="form">
             <div class="form-group row mb-3 g-2">
               <label for="name" class="col-md-2 col-form-label">
-                名稱 <span class="require">*</span>
+                名稱 <span class="require text-danger">*</span>
               </label>
               <div class="col-md-10">
                 <input type="text" name="name" class="form-control" id="name" value="{{record.name}}" required>
@@ -22,7 +22,7 @@
 
             <div class="form-group row mb-3 g-2">
               <label for="date" class="col-md-2 col-form-label">
-                日期 <span class="require">*</span>
+                日期 <span class="require text-danger">*</span>
               </label>
               <div class="col-md-10">
                 <input type="date" name="date" class="form-control" id="date" value="{{dateFormat record.date}}"
@@ -34,7 +34,7 @@
 
             <div class="form-group row mb-3 g-2">
               <label for="category" class="col-md-2 col-form-label">
-                類別 <span class="require">*</span>
+                類別 <span class="require text-danger">*</span>
               </label>
               <div class="col-md-10">
                 <select class="category-dropdown" name="category">
@@ -49,7 +49,7 @@
 
             <div class="form-group row mb-3 g-2">
               <label for="amount" class="col-md-2 col-form-label">
-                金額 <span class="require">*</span>
+                金額 <span class="require text-danger">*</span>
               </label>
               <div class="col-md-10">
                 <input type="number" name="amount" class="form-control" id="amount" value="{{record.amount}}" required>
@@ -59,7 +59,7 @@
             </div>
 
             <div class="new-btn-location">
-              <button class="btn btn-outline-dark" type="submit" id="submit-button">儲存修改</button>
+              <button class="btn btn-outline-dark" type="submit" id="submit-button">儲存本次修改</button>
               <a href="/">
                 <button type="button" class="btn btn-outline-dark">
                   返回首頁
