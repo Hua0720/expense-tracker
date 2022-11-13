@@ -1,0 +1,29 @@
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema //物件建構子
+
+const expenseSchema = new Schema({
+  name: {
+    type: String,
+    required: true
+  },
+  date: {
+    type: String,
+    required: true
+  },
+  categoryId: {
+    type: Number,
+    required: true
+  },
+  amount: {
+    type: String,
+    required: true
+  },
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    index: true,
+    required: true
+  },
+})
+
+module.exports = mongoose.model('Expense', expenseSchema)
