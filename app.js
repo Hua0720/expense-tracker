@@ -10,10 +10,8 @@ const methodOverride = require('method-override')
 // 引用connect-flash套件
 const flash = require('connect-flash')
 
-// handlebars helper
-const dateFormat = require('./public/dateHelper')
-const { iconChoose, iconNum } = require('./public/iconHelper')
-const ifEven = require('./public/indexHelper')
+const dateFormat = require('./utility/time')
+const Icon = require('./utility/icon')
 
 // 判別開發環境
 if (process.env.NODE_ENV !== 'production') {
@@ -22,11 +20,9 @@ if (process.env.NODE_ENV !== 'production') {
 
 // 引用路由器
 const routes = require('./routes')
-
+require('./config/mongoose')
 // 載入設定檔
 const usePassport = require('./config/passport')
-
-require('./config/mongoose')
 
 const app = express()
 const PORT = process.env.PORT
