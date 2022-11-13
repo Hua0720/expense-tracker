@@ -8,15 +8,15 @@
 
   <div class="d-flex justify-content-center">
     <div class="col-3 mt-3">
-      <label for="name" class="form-label w-2 p-2 text-center">名稱<span class="text-danger">*</span>：</label>
-      <input type="text" class="form-control" id="name" aria-describedby="name" placeholder="請輸入項目名稱" name="name" size="4"
+      <label for="name" class="form-label w-2 p-2 text-center">名稱<span style="color: red;">*</span>：</label>
+      <input type="text" class="form-control" id="name" aria-describedby="name" placeholder="名稱" name="name" size="4"
         value="{{ records.name }}" required>
     </div>
   </div>
 
   <div class="d-flex justify-content-center">
     <div class="col-3 mt-3">
-      <label for="date" class="form-label w-2 p-2 text-center">日期<span class="text-danger">*</span>：</label>
+      <label for="date" class="form-label w-2 p-2 text-center">日期<span style="color: red;">*</span>：</label>
       <input type="date" class="form-control p-2 flex-grow-1" id="date" aria-describedby="date" placeholder="date"
         name="date" value="{{ dateFormat records.date }}" required>
     </div>
@@ -24,8 +24,9 @@
 
   <div class="d-flex justify-content-center">
     <div class="col-3 mt-3">
-      <label for="date" class="form-label w-2 p-2 text-center">類別<span class="text-danger">*</span>：</label>
+      <label for="date" class="form-label w-2 p-2 text-center">類別<span style="color: red;">*</span>：</label>
       <select class="form-select" id="category" name="categoryId" value="{{ records.categoryId }}">
+        <option disabled selected>類別*</option>
         <option value="1" {{#if (iconNum records.categoryId 1) }} selected {{/if}}>家居物業</option>
         <option value="2" {{#if (iconNum records.categoryId 2) }} selected {{/if}}>交通出行</option>
         <option value="3" {{#if (iconNum records.categoryId 3) }} selected {{/if}}>休閒娛樂</option>
@@ -37,7 +38,7 @@
 
   <div class="d-flex justify-content-center">
     <div class="col-3 mt-3">
-      <label for="amount" class="form-label w-2 p-2 text-center">輸入金額<span class="text-danger">*</span>：</label>
+      <label for="amount" class="form-label w-2 p-2 text-center">金額<span style="color: red;">*</span>：</label>
       <input type="number" min="0" class="form-control p-2 flex-grow-1" id="amount" aria-describedby="amount"
         placeholder="金額" name="amount" value="{{ records.amount }}" required>
     </div>

@@ -7,6 +7,3 @@ module.exports = {
     res.redirect('/users/login')
   }
 }
-
-// authenticator函式 (驗證器)
-// req.isAuthenticated() 是 Passport.js 提供的函式，會根據 request 的登入狀態回傳 true 或 false
