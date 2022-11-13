@@ -1,15 +1,19 @@
 const mongoose = require('mongoose')
-const Schema = mongoose.Schema //物件建構子
+const Schema = mongoose.Schema
 
 const categorySchema = new Schema({
-  id: {
-    type: Number,
-    required: true
-  },
   name: {
     type: String,
     required: true
   },
+  id: {
+    type: Number,
+    required: true
+  },
+  icon: {
+    type: String,
+    required: true
+  }
 })
 
 module.exports = mongoose.model('Category', categorySchema)
