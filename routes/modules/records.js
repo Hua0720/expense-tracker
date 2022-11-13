@@ -1,61 +1,73 @@
-// 引用 Express 與 Express 路由器
 const express = require('express')
 const router = express.Router()
 
-// 引入 record model
+// 引用 model
 const Record = require('../../models/record')
+const Category = require('../../models/category')
+const category = require('../../models/category')
 
-// edit record
+// 新增頁面
 router.get('/new', (req, res) => {
-  res.render('new')
+  Category.find()
+    .lean()
+    .then(categoryList => {
+      res.render('new', { categoryList })
+    })
+    .catch(err => console.log(err))
 })
 
-// add record
+// 新增功能
 router.post('/', (req, res) => {
   const userId = req.user._id
-  const name = req.body.name
-  return Record.create({ name, userId })
+  req.body.userId = userId
+  Record.create(req.body)
     .then(() => res.redirect('/'))
-    .catch(error => console.log(error))
+    .catch(err => console.log(err))
 })
 
-// 查看特定一筆資料
-router.get('/:id', (req, res) => {
+// 編輯頁面
+router.get('/:id/edit', (req, res) => {
   const userId = req.user._id
   const _id = req.params.id
-  return Record.findOne({ _id, userId }) // 改用 findOne 需和資料庫一樣的屬性名稱_id
+  const categoryList = []
+  Category.find()
     .lean()
-    .then(records => res.render('edit', { records }))
-    .catch(error => console.log(error))
+    .then(category => {
+      categoryList.push(...category)
+    })
+  Record.findOne({ _id, userId })
+    .lean()
+    .then(record => {
+      categoryList.forEach(category => {
+        if (category.id === record.category) {
+          category.selected = true
+        }
+      })
+      res.render('edit', { record, categoryList })
+    })
+    .catch(err => console.log(err))
 })
 
-// 修改的部分
+// 編輯功能
 router.put('/:id', (req, res) => {
   const userId = req.user._id
   const _id = req.params.id
-  const { name, date, categoryId, amount } = req.body
-  return Record.findOne({ _id, userId })
-    .then(records => {
-      records.name = name
-      records.date = date
-      records.categoryId = Number(categoryId)
-      records.amount = amount
-      return records.save()
-    })
+  const recordsInfo = req.body
+  return Record.findByIdAndUpdate({ _id, userId }, recordsInfo)
+    .lean()
     .then(() => res.redirect('/'))
-    .catch(error => console.log(error))
+    .catch(err => console.log(err))
 })
 
-// 刪除的部分
+// 刪除功能
 router.delete('/:id', (req, res) => {
   const userId = req.user._id
   const _id = req.params.id
   return Record.findOne({ _id, userId })
-    .then(records => records.remove())
+    .then(record => record.remove())
     .then(() => res.redirect('/'))
-    .catch(error => console.log(error))
+    .catch(err => console.log(err))
 })
 
 
-// 匯出路由器
 module.exports = router
